@@ -1,5 +1,7 @@
 import React from "react";
 import pic4 from "./image/worker.jpeg";
+import pic5 from "./image/EditButton.png";
+import pic6 from "./image/bin.png";
 import { NavLink } from "react-router-dom";
 const WorkerCard = () => {
   return (
@@ -17,14 +19,14 @@ const WorkerCard = () => {
         <div className="text-center w-full py-4">Address</div>
 
         <div className=" w-full text-center py-4">
-          <NavLink>
-            <img src="" alt="" srcset="" />
+          <NavLink to="#">
+            <img src={pic5} className="h-8 w-8 mx-auto" alt="" srcset="" />
           </NavLink>
         </div>
 
         <div className=" w-full text-center py-4">
           <NavLink>
-            <img src="" alt="" srcset="" />
+            <img src={pic6} className="h-8 w-8 mx-auto" srcset="" />
           </NavLink>
         </div>
       </div>
