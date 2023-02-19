@@ -3,7 +3,7 @@ import pic1 from "./image/dimond1.png";
 import manager from "./image/manager.jpeg.jpg";
 import owner from "./image/owner.jpeg.jpg";
 import worker from "./image/worker.jpeg";
-import bg from "./image/BackgroundImage.png";
+import bg from "./image/home.jpeg";
 
 import { NavLink } from "react-router-dom";
 // import pic1 from "./image/.png";
@@ -16,7 +16,7 @@ const Home = () => {
         </h1>
         <img
           src={pic1}
-          className="h-[240px] w-[240px] mx-auto"
+          className="h-[240px] w-[240px] mx-auto rounded-3xl"
           alt=""
           srcset=""
         />
@@ -27,7 +27,12 @@ const Home = () => {
       <div className="flex flex-row justify-around mt-8 ">
         <div>
           <NavLink className="" to="OwnerLogin">
-            <img src={owner} className="h-[166px] w-[300px]" alt="" srcset="" />
+            <img
+              src={owner}
+              className="h-[166px] w-[250px] rounded-3xl"
+              alt=""
+              srcset=""
+            />
           </NavLink>
           <h2 className="text-center font-mono text-white  text-2xl">Owner</h2>
         </div>
@@ -35,7 +40,7 @@ const Home = () => {
           <NavLink to="ManagerLogin">
             <img
               src={manager}
-              className="h-[166px] w-[300px]"
+              className="h-[166px] w-[250px]  rounded-3xl"
               alt=""
               srcset=""
             />
@@ -48,7 +53,7 @@ const Home = () => {
           <NavLink to="WorkerLogin">
             <img
               src={worker}
-              className="h-[166px] w-[300px]"
+              className="h-[166px] w-[250px] rounded-3xl"
               alt=""
               srcset=""
             />

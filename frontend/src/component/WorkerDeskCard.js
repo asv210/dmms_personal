@@ -30,7 +30,7 @@ const WorkerDeskCard = () => {
         <input type="date" name="Date" value={user.Date} onChange={handler} />
       </div>
 
-      <div className="text-center w-full py-4  bg-red-600">
+      <div className="text-center w-full py-4 ">
         <input
           style={{ width: "50% " }}
           className=""
@@ -42,7 +42,7 @@ const WorkerDeskCard = () => {
         />
       </div>
 
-      <div className="text-center w-full py-4  bg-blue-600">
+      <div className="text-center w-full py-4  ">
         <input
           style={{ width: "50% " }}
           className=""
@@ -53,7 +53,7 @@ const WorkerDeskCard = () => {
           onChange={handler}
         />
       </div>
-      <div className="text-center w-full py-4 bg-green-600">
+      <div className="text-center w-full py-4 ">
         <input
           style={{ width: "50% " }}
           className=""
@@ -65,7 +65,7 @@ const WorkerDeskCard = () => {
         />
       </div>
 
-      <div className="w-full text-center py-4  bg-pink-600">
+      <div className="w-full text-center py-4 ">
         <h3 className=" ">{user.DailySalary != "" ? user.DailySalary : "0"}</h3>
       </div>
       <div className=" w-full text-center py-4">

@@ -26,7 +26,7 @@ const NavbarWo = () => {
             </button>
           </div>
           <div>
-            <h2>Worker's Name</h2>
+            <h2 className="font-bold">RAJESH VADHASIYA</h2>
           </div>
         </div>
       </nav>

@@ -1,5 +1,6 @@
-import React, { useState } from "react";
-
+import React, { useState, useEffect } from "react";
+import axios from "axios";
+import bg from "./image/home.jpeg";
 const WorkerLogin = () => {
   const [user, setUser] = useState({
     Email: "",
@@ -15,7 +16,7 @@ const WorkerLogin = () => {
     window.location = "/WorkerHome";
   };
   return (
-    <div>
+    <div style={{ backgroundImage: `url(${bg})` }}>
       <div className="relative flex flex-col justify-center min-h-screen overflow-hidden">
         <div className="w-full p-6 m-auto bg-white rounded-md shadow-xl lg:max-w-xl">
           <h1 className="text-3xl font-semibold text-center text-purple-700 ">
