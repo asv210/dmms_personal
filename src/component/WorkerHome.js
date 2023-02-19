@@ -1,7 +1,14 @@
 import React from "react";
+import NavbarWo from "./NavbarWo";
+import WorkerCardV from "./WorkerCardV";
 
 const WorkerHome = () => {
-  return <div>WorkerHome</div>;
+  return (
+    <>
+      <NavbarWo></NavbarWo>
+      <WorkerCardV></WorkerCardV>
+    </>
+  );
 };
 
 export default WorkerHome;

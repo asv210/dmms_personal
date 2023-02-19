@@ -1,7 +1,12 @@
 import React from "react";
+import NavbarOw from "./NavbarOw";
 
 const OwnerHome = () => {
-  return <div>OwnerHome</div>;
+  return (
+    <>
+      <NavbarOw></NavbarOw>
+    </>
+  );
 };
 
 export default OwnerHome;

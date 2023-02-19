@@ -12,6 +12,15 @@ import ManagerReg from "./component/register/ManagerReg";
 import WorkerInfo from "./component/WorkerInfo";
 import Help from "./component/Help";
 import AddWorker from "./component/AddWorker";
+import Header from "./component/Header";
+import WorkerCard from "./component/WorkerCard";
+import WorkerDesk from "./component/WorkerDesk";
+import HeaderDesk from "./component/HeaderDesk";
+import WorkerDeskCard from "./component/WorkerDeskCard";
+import NavbarWo from "./component/NavbarWo";
+import WorkerCardV from "./component/WorkerCardV";
+import NavbarOw from "./component/NavbarOw";
+import HeaderWorker from "./component/HeaderWorker";
 function App() {
   return (
     <div className="App">
@@ -23,7 +32,28 @@ function App() {
             path="/ManagerLogin"
             element={<ManagerLogin></ManagerLogin>}
           />
+          <Route exact path="/WorkerDesk" element={<WorkerDesk></WorkerDesk>} />
+          <Route
+            exact
+            path="/WorkerDeskCard"
+            element={<WorkerDeskCard></WorkerDeskCard>}
+          />
+          <Route
+            exact
+            path="/WorkerCardV"
+            element={<WorkerCardV></WorkerCardV>}
+          />
+          <Route exact path="/NavbarWo" element={<NavbarWo></NavbarWo>} />
+          <Route exact path="/NavbarOw" element={<NavbarOw></NavbarOw>} />
           <Route exact path="/Help" element={<Help></Help>} />
+          <Route exact path="/WorkerCard" element={<WorkerCard></WorkerCard>} />
+          <Route exact path="/Header" element={<Header></Header>} />
+          <Route exact path="/HeaderDesk" element={<HeaderDesk></HeaderDesk>} />
+          <Route
+            exact
+            path="/HeaderWorker"
+            element={<HeaderWorker></HeaderWorker>}
+          />
 
           <Route exact path="/AddWorker" element={<AddWorker></AddWorker>} />
           <Route exact path="/WorkerInfo" element={<WorkerInfo></WorkerInfo>} />
