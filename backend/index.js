@@ -1,17 +1,18 @@
-import express from 'express'
-import connectDB from './connectdb.js'
-import web from "./web.js"
-import cors from "cors"
+const express = require("express");
+const cors = require("cors");
+const app = express();
+// import web from "./web";
+const port = 8000;
+app.use(cors());
+const mongoDB = require("./db");
+mongoDB();
 
-const app = express()
-app.use(cors())
-const DATABASE_URL = "mongodb://localhost:27017";
-connectDB(DATABASE_URL)
-const port = '8088';
-
-app.use(express.json())
-app.use("/api", web)
+app.get("/", (req, res) => {
+  res.send("Hello World!");
+});
+// app.use("/api", web);
+app.use(express.json());
 
 app.listen(port, () => {
-    console.log("Server is started...")
-})
+  console.log(`Example app listening on port ${port}`);
+});
