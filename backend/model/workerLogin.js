@@ -1,4 +1,4 @@
-const mongoose = require("mongoose");
+import mongoose from "mongoose";
 const workerLoginSchema = new mongoose.Schema({
   password: { type: String },
   name: { type: String },

@@ -1,4 +1,4 @@
-const mongoose = require("mongoose");
+import mongoose from "mongoose";
 const mongoURI =
   "mongodb+srv://apar:apar@cluster0.i6z9xrs.mongodb.net/DiamondManagement?retryWrites=true&w=majority";
 
@@ -11,4 +11,4 @@ const mongoDB = async () => {
     }
   });
 };
-module.exports = mongoDB;
+export default mongoDB;

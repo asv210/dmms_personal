@@ -13,6 +13,12 @@ const WorkerLogin = () => {
     setUser({ ...user, [name]: value });
   };
   const login = () => {
+    e.preventDefault();
+    axios.post("http://localhost:8000/api/", user).then((res) => {
+      alert(res.data.message);
+      // console.log("diuf");
+      window.location.reload(true);
+    });
     window.location = "/WorkerHome";
   };
   return (
