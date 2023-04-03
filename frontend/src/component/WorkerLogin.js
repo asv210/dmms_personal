@@ -3,7 +3,7 @@ import axios from "axios";
 import bg from "./image/home.jpeg";
 const WorkerLogin = () => {
   const [user, setUser] = useState({
-    Email: "",
+    email: "",
     password: "",
   });
   let name, value;
@@ -12,14 +12,17 @@ const WorkerLogin = () => {
     value = e.target.value;
     setUser({ ...user, [name]: value });
   };
-  const login = () => {
+  const login = (e) => {
     e.preventDefault();
-    axios.post("http://localhost:8000/api/", user).then((res) => {
-      alert(res.data.message);
-      // console.log("diuf");
-      window.location.reload(true);
+
+    axios.post("http://localhost:8000/api/workerlogin1/", user).then((res) => {
+      if (res.status == 200) {
+        window.location = "/WorkerHome";
+      } else {
+        alert("wrong details");
+        window.location.reload(true);
+      }
     });
-    window.location = "/WorkerHome";
   };
   return (
     <div style={{ backgroundImage: `url(${bg})` }}>
@@ -38,8 +41,8 @@ const WorkerLogin = () => {
               </label>
               <input
                 type="email"
-                name="Email"
-                value={user.Email}
+                name="email"
+                value={user.email}
                 onChange={handler}
                 className="block w-full px-4 py-2 mt-2 text-purple-700 bg-white border rounded-md focus:border-purple-400 focus:ring-purple-300 focus:outline-none focus:ring focus:ring-opacity-40"
               />

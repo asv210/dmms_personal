@@ -18,9 +18,18 @@ class WorkerLoginRoute {
 
   static getDocById = async (req, res) => {
     try {
-      const result = await workerLoginModel.findOne({ email: req.params.id });
-      console.log(req.param.id);
-      res.send(result);
+      const result = await workerLoginModel.findOne({
+        email: req.body.email,
+      });
+      if (result != null) {
+        if (result.password === req.body.password) {
+          res.status(200).send("ok");
+        } else {
+          res.status(203).send("not ok");
+        }
+      } else {
+        res.status(203).send("not ok");
+      }
     } catch (err) {
       console.log(err);
     }

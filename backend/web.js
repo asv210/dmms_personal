@@ -4,7 +4,7 @@ const router = express.Router();
 
 router.get("/workerlogin/", WorkerLoginRoute.getAllDoc);
 
-router.get("/workerlogin/:id", WorkerLoginRoute.getDocById);
+router.post("/workerlogin1/", WorkerLoginRoute.getDocById);
 
 router.post("/workerlogin/", WorkerLoginRoute.createDoc);
 
