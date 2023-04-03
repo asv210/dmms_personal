@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import bg from "./image/home.jpeg";
+import WorkerHome from "./WorkerHome";
 const WorkerLogin = () => {
   const [user, setUser] = useState({
     email: "",
@@ -17,7 +18,7 @@ const WorkerLogin = () => {
 
     axios.post("http://localhost:8000/api/workerlogin1/", user).then((res) => {
       if (res.status == 200) {
-        window.location = "/WorkerHome";
+        <WorkerHome />;
       } else {
         alert("wrong details");
         window.location.reload(true);

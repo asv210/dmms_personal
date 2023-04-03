@@ -26,7 +26,7 @@ const NavbarWo = () => {
             </button>
           </div>
           <div>
-            <h2 className="font-bold">RAJESH VADHASIYA</h2>
+            <h2 className="font-bold"></h2>
           </div>
         </div>
       </nav>

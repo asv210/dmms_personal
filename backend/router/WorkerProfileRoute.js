@@ -1,43 +1,32 @@
-import ManagerLoginModel from "../model/ManagerLogin.js";
+import WorkerProfileModel from "../model/WorkerProfile.js";
 
-class ManagerLoginRoute {
+class WorkerProfileRoute {
   static createDoc = async (req, res) => {
-    const obj = new ManagerLoginModel(req.body);
+    const obj = new WorkerProfileRoute(req.body);
     const result = await obj.save();
     res.status(201).send(result);
   };
-
   static getAllDoc = async (req, res) => {
     try {
-      const result = await ManagerLoginModel.find();
+      const result = await WorkerProfileModel.find();
       res.send(result);
-    } catch (err) {
-      console(err);
-    }
-  };
-
-  static getDocById = async (req, res) => {
-    try {
-      const result = await ManagerLoginModel.findOne({
-        email: req.body.email,
-      });
-      if (result != null) {
-        if (result.password === req.body.password) {
-          res.status(200).send("ok");
-        } else {
-          res.status(203).send("not ok");
-        }
-      } else {
-        res.status(203).send("not ok");
-      }
     } catch (err) {
       console.log(err);
     }
   };
-
+  static getDocById = async (req, res) => {
+    try {
+      const result = await WorkerProfileModel.findOne({
+        email: req.body.email,
+      });
+      res.send(result);
+    } catch (err) {
+      console.log(err);
+    }
+  };
   static updateDocById = async (req, res) => {
     try {
-      const result = await ManagerLoginModel.updateMany(
+      const result = await workerProfileModel.updateMany(
         { email: req.param.id },
         { $set: req.body }
       );
@@ -49,7 +38,7 @@ class ManagerLoginRoute {
 
   static deleteDocById = async (req, res) => {
     try {
-      const result = await ManagerLoginModel.deleteMany({
+      const result = await workerProfileModel.deleteMany({
         email: req.param.id,
       });
       res.status(204).send(result);
@@ -58,4 +47,4 @@ class ManagerLoginRoute {
     }
   };
 }
-export default ManagerLoginRoute;
+export default WorkerProfileRoute;
