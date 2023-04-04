@@ -26,7 +26,7 @@ router.put("/managerlogin/:id", ManagerLoginRoute.deleteDocById);
 
 router.get("/workerprofile/", WorkerProfileRoute.getAllDoc);
 
-router.post("/workerprofile1/", WorkerProfileRoute.getDocById);
+router.get("/workerprofile1/", WorkerProfileRoute.getDocById);
 
 router.post("/workerprofile/", WorkerProfileRoute.createDoc);
 

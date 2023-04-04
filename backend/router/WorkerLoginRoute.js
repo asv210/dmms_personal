@@ -23,7 +23,7 @@ class WorkerLoginRoute {
       });
       if (result != null) {
         if (result.password === req.body.password) {
-          res.status(200).send("ok");
+          res.status(200).send(result);
         } else {
           res.status(203).send("not ok");
         }

@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import bg from "./image/home.jpeg";
-import WorkerHome from "./WorkerHome";
 const WorkerLogin = () => {
   const [user, setUser] = useState({
     email: "",
@@ -13,17 +12,22 @@ const WorkerLogin = () => {
     value = e.target.value;
     setUser({ ...user, [name]: value });
   };
-  const login = (e) => {
+  const login = async (e) => {
     e.preventDefault();
 
-    axios.post("http://localhost:8000/api/workerlogin1/", user).then((res) => {
-      if (res.status == 200) {
-        <WorkerHome />;
-      } else {
-        alert("wrong details");
-        window.location.reload(true);
-      }
-    });
+    await axios
+      .post("http://localhost:8000/api/workerlogin1/", user)
+      .then((res) => {
+        if (res.status == 200) {
+          localStorage.setItem("email", res.data.email);
+          localStorage.setItem("name", res.data.name);
+
+          window.location = "/WorkerHome";
+        } else {
+          alert("wrong details");
+          window.location.reload(true);
+        }
+      });
   };
   return (
     <div style={{ backgroundImage: `url(${bg})` }}>

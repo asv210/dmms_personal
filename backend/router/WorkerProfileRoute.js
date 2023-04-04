@@ -2,7 +2,7 @@ import WorkerProfileModel from "../model/WorkerProfile.js";
 
 class WorkerProfileRoute {
   static createDoc = async (req, res) => {
-    const obj = new WorkerProfileRoute(req.body);
+    const obj = new WorkerProfileModel(req.body);
     const result = await obj.save();
     res.status(201).send(result);
   };
@@ -16,9 +16,11 @@ class WorkerProfileRoute {
   };
   static getDocById = async (req, res) => {
     try {
-      const result = await WorkerProfileModel.findOne({
-        email: req.body.email,
+      console.log(req.query.email);
+      const result = await WorkerProfileModel.find({
+        email: req.query.email,
       });
+      //   console.log(result);
       res.send(result);
     } catch (err) {
       console.log(err);
