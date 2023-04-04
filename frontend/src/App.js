@@ -1,5 +1,10 @@
 // import "./App.css";
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Route,
+  Routes,
+  Navigate,
+} from "react-router-dom";
 import Home from "./component/Home";
 import ManagerLogin from "./component/ManagerLogin";
 import WorkerLogin from "./component/WorkerLogin";
@@ -28,6 +33,10 @@ import ManagerCard from "./component/ManagerCard";
 import HeaderMInfo from "./component/HeaderMInfo";
 import OwnerCard from "./component/OwnerCard";
 function App() {
+  // if (localStorage.getItem("email") === null) {
+  //   console.log("iojei");
+  //   Navigate("/");
+  // }
   return (
     <div className="App">
       <Router>
