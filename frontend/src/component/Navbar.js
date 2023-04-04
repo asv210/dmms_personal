@@ -5,6 +5,8 @@ const Navbar = (props) => {
   const logouthandler = () => {
     console.log(props.data);
   };
+  const name = localStorage.getItem("name");
+  console.log(name);
   return (
     <div>
       <nav class="bg-teal-400 border-gray-200 px-2 sm:px-4 py-2.5 ">
@@ -30,7 +32,7 @@ const Navbar = (props) => {
             </button>
           </div>
           <div>
-            <h2 className="font-bold">Apar Solanki</h2>
+            <h2 className="font-bold">{name}</h2>
           </div>
           <div
             class="items-center justify-between hidden w-full md:flex md:w-auto md:order-1"

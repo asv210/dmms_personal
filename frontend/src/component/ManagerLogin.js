@@ -1,8 +1,8 @@
 import React, { useState } from "react";
-
+import axios from "axios";
 const Manager = () => {
   const [user, setUser] = useState({
-    Email: "",
+    email: "",
     password: "",
   });
   let name, value;
@@ -11,8 +11,23 @@ const Manager = () => {
     value = e.target.value;
     setUser({ ...user, [name]: value });
   };
-  const login = () => {
-    window.location = "/ManagerHome";
+  const login = async (e) => {
+    e.preventDefault();
+
+    await axios
+      .post("http://localhost:8000/api/managerlogin1/", user)
+      .then((res) => {
+        if (res.status == 200) {
+          // console.log(res.data);
+          localStorage.setItem("email", res.data.email);
+          localStorage.setItem("name", res.data.name);
+          console.log(localStorage.getItem("email"));
+          window.location = "/ManagerHome";
+        } else {
+          alert("wrong details");
+          window.location.reload(true);
+        }
+      });
   };
   return (
     <div>
@@ -31,8 +46,8 @@ const Manager = () => {
               </label>
               <input
                 type="email"
-                name="Email"
-                value={user.Email}
+                name="email"
+                value={user.email}
                 onChange={handler}
                 className="block w-full px-4 py-2 mt-2 text-purple-700 bg-white border rounded-md focus:border-purple-400 focus:ring-purple-300 focus:outline-none focus:ring focus:ring-opacity-40"
               />
