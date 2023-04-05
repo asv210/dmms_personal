@@ -1,5 +1,6 @@
 import mongoose from "mongoose";
 const workerLoginSchema = new mongoose.Schema({
+  parent: { type: String },
   password: { type: String },
   name: { type: String },
   phone: { type: String },

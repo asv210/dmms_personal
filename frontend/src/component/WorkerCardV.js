@@ -1,7 +1,9 @@
-import React, { useEffect } from "react";
+import React from "react";
 import pic4 from "./image/worker.jpeg";
 
 const WorkerCardV = ({ item }) => {
+  const date = new Date(item.date).toLocaleDateString();
+
   return (
     <div>
       <div className="my-2">
@@ -15,7 +17,7 @@ const WorkerCardV = ({ item }) => {
               srcset=""
             />
           </div>
-          <div className=" w-full   text-center py-4 ">{item?.date}</div>
+          <div className=" w-full   text-center py-4 ">{date}</div>
 
           <div className="text-center w-full  py-4">{item?.assignWork}</div>
           <div className="text-center w-full  py-4">{item?.completedWork}</div>

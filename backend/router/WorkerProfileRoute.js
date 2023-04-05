@@ -16,7 +16,6 @@ class WorkerProfileRoute {
   };
   static getDocById = async (req, res) => {
     try {
-      console.log(req.query.email);
       const result = await WorkerProfileModel.find({
         email: req.query.email,
       });
