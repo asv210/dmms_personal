@@ -47,24 +47,24 @@ router.put("/managerprofile/:id", ManagerProfileRoute.updateDocById);
 
 router.put("/managerprofile/:id", ManagerProfileRoute.deleteDocById);
 
-// router.get("/workermanager/", WorkerManagerRoute.getAllDoc);
+router.get("/workermanager/", WorkerManagerRoute.getAllDoc);
 
-// router.get("/workermanager1/", WorkerManagerRoute.getDocById);
+router.get("/workermanager1/", WorkerManagerRoute.getDocById);
 
-// router.post("/workermanager/", WorkerManagerRoute.createDoc);
+router.post("/workermanager/", WorkerManagerRoute.createDoc);
 
-// router.put("/workermanager/:id", WorkerManagerRoute.updateDocById);
+router.put("/workermanager/:id", WorkerManagerRoute.updateDocById);
 
-// router.put("/workermanager/:id", WorkerManagerRoute.deleteDocById);
+router.put("/workermanager/:id", WorkerManagerRoute.deleteDocById);
 
-// router.get("/ownermanager/", OwnerManagerRoute.getAllDoc);
+router.get("/ownermanager/", OwnerManagerRoute.getAllDoc);
 
-// router.get("/ownermanager1/", OwnerManagerRoute.getDocById);
+router.get("/ownermanager1/", OwnerManagerRoute.getDocById);
 
-// router.post("/ownermanager/", OwnerManagerRoute.createDoc);
+router.post("/ownermanager/", OwnerManagerRoute.createDoc);
 
-// router.put("/ownermanager/:id", OwnerManagerRoute.updateDocById);
+router.put("/ownermanager/:id", OwnerManagerRoute.updateDocById);
 
-// router.put("/ownermanager/:id", OwnerManagerRoute.deleteDocById);
+router.put("/ownermanager/:id", OwnerManagerRoute.deleteDocById);
 
 export default router;
