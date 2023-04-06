@@ -1,13 +1,14 @@
 import React, { useState } from "react";
-
+import axios from "axios";
 const WorkerReg = () => {
   const [user, setUser] = useState({
-    Name: "",
-    Mobile_no: "",
-    Email: "",
+    parent: localStorage.getItem("email"),
     password: "",
-    reEnterpassword: "",
-    Address: "",
+    name: "",
+    phone: "",
+    address: "",
+    email: "",
+    reenterpassword: "",
   });
   let name, value;
   const handler = (e) => {
@@ -15,7 +16,22 @@ const WorkerReg = () => {
     value = e.target.value;
     setUser({ ...user, [name]: value });
   };
-  const register = () => {
+  const register = async (e) => {
+    e.preventDefault();
+
+    await axios
+      .post("http://localhost:8000/api/workerlogin/", user)
+      .then((res) => {
+        if (res.status == 200) {
+          // console.log(res.data);
+
+          alert("successfully added");
+          window.location = "/AddWorker";
+        } else {
+          alert("wrong details");
+          window.location.reload(true);
+        }
+      });
     window.location = "./";
   };
   return (
@@ -35,8 +51,8 @@ const WorkerReg = () => {
             <div className="flex flex-col items-start">
               <input
                 type="text"
-                name="Name"
-                value={user.Name}
+                name="name"
+                value={user.name}
                 onChange={handler}
                 className="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
               />
@@ -52,8 +68,8 @@ const WorkerReg = () => {
             <div className="flex flex-col items-start">
               <input
                 type="email"
-                name="Email"
-                value={user.Email}
+                name="email"
+                value={user.email}
                 onChange={handler}
                 className="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
               />
@@ -66,8 +82,8 @@ const WorkerReg = () => {
             <div className="flex flex-col items-start">
               <input
                 type="tel"
-                name="Mobile_no"
-                value={user.Mobile_no}
+                name="phone"
+                value={user.phone}
                 onChange={handler}
                 className="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
               />
@@ -84,7 +100,7 @@ const WorkerReg = () => {
               <input
                 type="text"
                 name="address"
-                value={user.Address}
+                value={user.address}
                 onChange={handler}
                 className=" block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
               />

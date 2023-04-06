@@ -9,7 +9,7 @@ class WorkerLoginRoute {
 
   static getAllDoc = async (req, res) => {
     try {
-      const result = await workerLoginModel.find();
+      const result = await workerLoginModel.find({ parent: req.query.parent });
       res.send(result);
     } catch (err) {
       console(err);

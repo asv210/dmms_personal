@@ -1,7 +1,9 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import Navbar from "./Navbar";
 import Header from "./Header";
 import WorkerCard from "./WorkerCard";
+import axios from "axios";
+
 const WorkerInfo = () => {
   const [dat, setData] = useState([]);
   const func = async () => {
@@ -9,7 +11,7 @@ const WorkerInfo = () => {
     const ema = localStorage.getItem("email");
 
     const { data } = await axios.get(
-      "http://localhost:8000/api/managerprofile1/?email=" + ema
+      "http://localhost:8000/api/workerlogin/?parent=" + ema
     );
     // .then((res) => {
     // const data1 = res.data;
@@ -35,8 +37,15 @@ const WorkerInfo = () => {
   return (
     <>
       <Header></Header>
-
-      <WorkerCard></WorkerCard>
+      {dat.length > 0 ? (
+        <div>
+          {dat[0].map((item) => {
+            return <WorkerCard item={item} />;
+          })}
+        </div>
+      ) : (
+        <div className="text-center">Data Loading</div>
+      )}
     </>
   );
 };

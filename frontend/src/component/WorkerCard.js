@@ -3,21 +3,20 @@ import pic4 from "./image/worker.jpeg";
 import pic5 from "./image/EditButton.png";
 import pic6 from "./image/bin.png";
 import { NavLink } from "react-router-dom";
-const WorkerCard = () => {
+const WorkerCard = ({ item }) => {
   return (
     <div className="my-2">
       <div className="flex flex-row space-between  bg-green-200">
-        <div className=" w-2 mx-4 text-center py-4 ">No.</div>
-        <div className=" flex flex-row justify-center items-center ml-6 w-52">
+        <div className=" flex flex-row justify-center items-center ml-3 w-52">
           <img src={pic4} className=" h-8 w-8  rounded-xl " alt="" srcset="" />
         </div>
-        <div className="w-full text-center  py-4 ">hello guys im</div>
+        <div className="w-full text-center  py-4 ">{item?.name}</div>
 
-        <div className="text-center w-full py-4">1234567890</div>
-        <div className="text-center w-full py-4">idhygd@gmail.com</div>
+        <div className="text-center w-full py-4">{item?.phone}</div>
+        <div className="text-center w-full py-4">{item?.email}</div>
 
         <div className="text-center w-full overflow overflow-x-hidden py-4">
-          iudhfuihewuihfuiehfuiiuwebfuibweiubwiuebuifwiubeuihrui
+          {item?.address}
         </div>
 
         <div className=" w-full text-center py-4">
