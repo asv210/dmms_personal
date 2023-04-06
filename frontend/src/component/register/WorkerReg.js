@@ -15,24 +15,31 @@ const WorkerReg = () => {
     name = e.target.name;
     value = e.target.value;
     setUser({ ...user, [name]: value });
+    // console.log(user.reenterpassword);
   };
   const register = async (e) => {
     e.preventDefault();
 
-    await axios
-      .post("http://localhost:8000/api/workerlogin/", user)
-      .then((res) => {
-        if (res.status == 200) {
-          // console.log(res.data);
+    if (user.password === user.reenterpassword) {
+      console.log(user.password);
+      console.log(user.reenterpassword);
+      await axios
+        .post("http://localhost:8000/api/workerlogin/", user)
+        .then((res) => {
+          if (res.status == 201) {
+            // console.log(res.data);
 
-          alert("successfully added");
-          window.location = "/AddWorker";
-        } else {
-          alert("wrong details");
-          window.location.reload(true);
-        }
-      });
-    window.location = "./";
+            alert("successfully added");
+            window.location = "/AddWorker";
+          } else {
+            alert("wrong details");
+            window.location.reload(true);
+          }
+        });
+    } else {
+      alert("wrong password");
+      window.location = "/AddWorker";
+    }
   };
   return (
     <div className="flex flex-col items-center min-h-screen pt-6 sm:justify-center sm:pt-0 bg-gray-50">

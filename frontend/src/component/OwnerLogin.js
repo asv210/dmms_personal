@@ -12,8 +12,11 @@ const OwnerLogin = () => {
     setUser({ ...user, [name]: value });
   };
 
-  const login = () => {
-    window.location = "/OwnerHome";
+  const login = (e) => {
+    e.preventDefault();
+    if (user.Email == "rohan123@gmail.com" && user.password == "23op9023") {
+      window.location = "/OwnerHome";
+    }
   };
   return (
     <div className="relative flex flex-col justify-center min-h-screen overflow-hidden">
