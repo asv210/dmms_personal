@@ -43,7 +43,7 @@ const WorkerHome = () => {
           })}
         </div>
       ) : (
-        <div>fgfcrt</div>
+        <div className="text-center">Data Loading</div>
       )}
     </>
   );
