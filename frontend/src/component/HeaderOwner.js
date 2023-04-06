@@ -4,7 +4,7 @@ const HeaderOwner = () => {
   return (
     <div className="mt-2">
       <div className="flex flex-row space-between  bg-green-200">
-        <div className=" w-2 mx-4 text-center py-4 ">No.</div>
+        <div className=" w-2 mx-4 text-center py-4 "></div>
         <div className=" w-full ml-12 text-center py-4 ">Name</div>
 
         <div className="text-center w-full px-10 py-4">Date</div>

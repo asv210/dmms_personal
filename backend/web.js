@@ -33,7 +33,7 @@ router.get("/workerprofile1/", WorkerProfileRoute.getDocById);
 
 router.post("/workerprofile/", WorkerProfileRoute.createDoc);
 
-router.put("/workerprofile/:id", WorkerProfileRoute.updateDocById);
+router.put("/workerprofile/", WorkerProfileRoute.updateDocById);
 
 router.put("/workerprofile/:id", WorkerProfileRoute.deleteDocById);
 

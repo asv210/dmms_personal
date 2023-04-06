@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-
+import axios from "axios";
 const ManagerCard = ({ item }) => {
   const [user, setUser] = useState({
     email: item?.email,
@@ -15,12 +15,27 @@ const ManagerCard = ({ item }) => {
     name = e.target.name;
     value = e.target.value;
     setUser({ ...user, [name]: value });
-    console.log(user.Date);
   };
 
-  const confirmhandler = (e) => {
+  const confirmhandler = async (e) => {
     e.preventDefault();
-    console.log(user);
+
+    await axios
+      .put(
+        "http://localhost:8000/api/managerprofile/?email=" + user.email,
+        user
+      )
+      .then((res) => {
+        if (res.status == 201) {
+          // console.log(res.data);
+
+          alert("successfully added");
+          window.location = "/";
+        } else {
+          alert("wrong details");
+          window.location.reload(true);
+        }
+      });
   };
   return (
     <div className="mt-2">
@@ -45,28 +60,8 @@ const ManagerCard = ({ item }) => {
           />
         </div>
 
-        <div className="text-center w-full py-4  ">
-          <input
-            style={{ width: "50% " }}
-            className="pl-2 ml-8"
-            type="number"
-            name="completedWork"
-            value={user.completedWork}
-            onChange={handler}
-            placeholder="00"
-          />
-        </div>
-        <div className="text-center w-full py-4 ">
-          <input
-            style={{ width: "50% " }}
-            className="pl-2 ml-6"
-            type="number"
-            name="defectedWork"
-            value={user.defectedWork}
-            onChange={handler}
-            placeholder="00"
-          />
-        </div>
+        <div className="text-center w-full py-4  "></div>
+        <div className="text-center w-full py-4 "></div>
 
         <div className=" w-full text-center py-4 ">
           <h3>Salary</h3>

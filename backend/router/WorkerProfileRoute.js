@@ -28,7 +28,7 @@ class WorkerProfileRoute {
   static updateDocById = async (req, res) => {
     try {
       const result = await workerProfileModel.updateMany(
-        { email: req.param.id },
+        { email: req.query.id },
         { $set: req.body }
       );
       res.send(result);

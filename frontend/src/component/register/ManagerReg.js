@@ -10,18 +10,35 @@ const ManagerReg = () => {
     address: "",
     reEnterpassword: "",
   });
+  const [profile, setProfile] = useState({
+    email: "",
+    date: "00",
+    assignWork: "00",
+    completedWork: "00",
+    defectedWork: "00",
+
+    salary: "00",
+  });
   let name, value;
   const handler = (e) => {
     name = e.target.name;
     value = e.target.value;
     setUser({ ...user, [name]: value });
+    setProfile({ ...user, [name]: value });
+
     // console.log(localStorage.getItem("email"));
   };
   const register = async (e) => {
     e.preventDefault();
     if (user.password === user.reenterpassword) {
-      console.log(user.password);
-      console.log(user.reenterpassword);
+      await axios
+        .post("http://localhost:8000/api/managerprofile/", profile)
+        .then((res) => {
+          console.log(profile.email);
+          if (res.status == 201) {
+            console.log("confirm");
+          }
+        });
       await axios
         .post("http://localhost:8000/api/managerlogin/", user)
         .then((res) => {
