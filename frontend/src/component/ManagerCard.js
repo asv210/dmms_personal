@@ -1,12 +1,14 @@
 import React, { useState } from "react";
 
-const ManagerCard = () => {
+const ManagerCard = ({ item }) => {
   const [user, setUser] = useState({
-    Date: "",
-    Assign: "",
-    Completed: "",
-    Defective: "",
-    DailySalary: "",
+    email: item?.email,
+    date: "",
+    assignWork: "",
+    completedWork: "",
+    defectedWork: "",
+
+    salary: "",
   });
   let name, value;
   const handler = (e) => {
@@ -25,43 +27,44 @@ const ManagerCard = () => {
       <div className="flex flex-row space-between  bg-green-200">
         <div className=" w-2 px-4 text-center py-4 ">1</div>
 
-        <div className="w-full mx-12 text-center py-4 ">
-          Mahendralal Chiman oza
-        </div>
+        <div className="w-full mx-12 text-center py-4 ">{item?.name}</div>
 
-        <div className="text-center w-full py-4">
-          <input type="date" name="Date" value={user.Date} onChange={handler} />
+        <div className="text-center w-full py-4 ">
+          <input type="date" name="date" value={user.date} onChange={handler} />
         </div>
 
         <div className="text-center w-full py-4  ">
           <input
             style={{ width: "50% " }}
-            className=""
+            className="pl-2 ml-10"
             type="number"
-            name="Assign"
-            value={user.Assign}
+            name="assignWork"
+            value={user.assignWork}
             onChange={handler}
+            placeholder="00"
           />
         </div>
 
         <div className="text-center w-full py-4  ">
           <input
             style={{ width: "50% " }}
-            className=""
+            className="pl-2 ml-8"
             type="number"
-            name="Completed"
-            value={user.Completed}
+            name="completedWork"
+            value={user.completedWork}
             onChange={handler}
+            placeholder="00"
           />
         </div>
         <div className="text-center w-full py-4 ">
           <input
             style={{ width: "50% " }}
-            className=""
+            className="pl-2 ml-6"
             type="number"
-            name="Defective"
-            value={user.Defective}
+            name="defectedWork"
+            value={user.defectedWork}
             onChange={handler}
+            placeholder="00"
           />
         </div>
 

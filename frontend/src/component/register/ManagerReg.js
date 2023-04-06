@@ -1,21 +1,45 @@
 import React, { useState } from "react";
-
+import axios from "axios";
 const ManagerReg = () => {
   const [user, setUser] = useState({
-    Name: "",
-    Mobile_no: "",
-    Email: "",
+    parent: localStorage.getItem("email"),
+    email: "",
     password: "",
+    name: "",
+    phone: "",
+    address: "",
     reEnterpassword: "",
-    Address: "",
   });
   let name, value;
   const handler = (e) => {
     name = e.target.name;
     value = e.target.value;
     setUser({ ...user, [name]: value });
+    // console.log(localStorage.getItem("email"));
   };
-  const register = () => {};
+  const register = async (e) => {
+    e.preventDefault();
+    if (user.password === user.reenterpassword) {
+      console.log(user.password);
+      console.log(user.reenterpassword);
+      await axios
+        .post("http://localhost:8000/api/managerlogin/", user)
+        .then((res) => {
+          if (res.status == 201) {
+            // console.log(res.data);
+
+            alert("successfully added");
+            window.location = "/AddManager";
+          } else {
+            alert("wrong details");
+            window.location.reload(true);
+          }
+        });
+    } else {
+      alert("wrong password");
+      window.location = "/AddWorker";
+    }
+  };
   return (
     <div className="flex flex-col items-center min-h-screen pt-6 sm:justify-center sm:pt-0 bg-gray-50">
       <div>
@@ -33,8 +57,8 @@ const ManagerReg = () => {
             <div className="flex flex-col items-start">
               <input
                 type="text"
-                name="Name"
-                value={user.Name}
+                name="name"
+                value={user.name}
                 onChange={handler}
                 className="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
               />
@@ -50,8 +74,8 @@ const ManagerReg = () => {
             <div className="flex flex-col items-start">
               <input
                 type="email"
-                name="Email"
-                value={user.Email}
+                name="email"
+                value={user.email}
                 onChange={handler}
                 className="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
               />
@@ -64,8 +88,8 @@ const ManagerReg = () => {
             <div className="flex flex-col items-start">
               <input
                 type="tel"
-                name="Mobile_no"
-                value={user.Mobile_no}
+                name="phone"
+                value={user.phone}
                 onChange={handler}
                 className="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
               />
@@ -82,7 +106,7 @@ const ManagerReg = () => {
               <input
                 type="text"
                 name="address"
-                value={user.Address}
+                value={user.address}
                 onChange={handler}
                 className=" block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
               />

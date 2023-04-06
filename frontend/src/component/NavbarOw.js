@@ -22,7 +22,7 @@ const NavbarOw = () => {
               type="button"
               onClick={() => {
                 localStorage.removeItem("email");
-                localStorage.removeItem("name");
+
                 console.log(localStorage.getItem("email"));
                 window.location = "./OwnerLogin";
               }}

@@ -14,13 +14,13 @@ const OwnerCard = ({ item }) => {
               srcset=""
             />
           </div>
-          <div className="w-full text-center  py-4 ">hello guys im</div>
+          <div className="w-full text-center  py-4 ">{item?.name}</div>
 
-          <div className="text-center w-full py-4">1234567890</div>
-          <div className="text-center w-full py-4">idhygd@gmail.com</div>
+          <div className="text-center w-full py-4">{item?.phone}</div>
+          <div className="text-center w-full py-4">{item?.email}</div>
 
           <div className="text-center w-full overflow overflow-x-hidden py-4">
-            iudhfuihewuihfuiehfuiiuwebfuibweiubwiuebuifwiubeuihrui
+            {item?.address}
           </div>
           <div className="text-center w-full py-4">
             <input type="number" className="w-[70%]" name="" id="" />

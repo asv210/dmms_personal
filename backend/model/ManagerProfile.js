@@ -6,7 +6,7 @@ const managerProfileSchema = new mongoose.Schema({
   assignWork: { type: String },
   completedWork: { type: String },
   defectedWork: { type: String },
-  remainingWork: { type: String },
+
   salary: { type: String },
 });
 

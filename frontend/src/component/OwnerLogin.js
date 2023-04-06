@@ -14,7 +14,9 @@ const OwnerLogin = () => {
 
   const login = (e) => {
     e.preventDefault();
-    if (user.Email == "rohan123@gmail.com" && user.password == "23op9023") {
+    if (user.Email == "rohan123@gmail.com" && user.password == "12") {
+      localStorage.setItem("email", user.Email);
+
       window.location = "/OwnerHome";
     }
   };
