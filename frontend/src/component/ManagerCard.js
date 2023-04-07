@@ -81,7 +81,7 @@ const ManagerCard = ({ item }) => {
         <div className="text-center w-full py-4 ">{user.defectedWork}</div>
 
         <div className=" w-full text-center py-4 ">
-          <h3>{var(user.completed )* 5}</h3>
+          <h3>{user.completed * 5}</h3>
         </div>
         <div className=" w-full text-center py-4">
           <button

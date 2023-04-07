@@ -3,11 +3,11 @@ import mongoose from "mongoose";
 const managerProfileSchema = new mongoose.Schema({
   email: { type: String },
   date: { type: Date },
-  assignWork: { type: String },
-  completedWork: { type: String },
-  defectedWork: { type: String },
+  assignWork: { type: Number },
+  completedWork: { type: Number },
+  defectedWork: { type: Number },
 
-  salary: { type: String },
+  salary: { type: Number },
 });
 
 const ManagerProfileModel = mongoose.model(

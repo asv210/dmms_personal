@@ -1,4 +1,5 @@
 import express from "express";
+import OwnerLogin from "./router/OwnerLogin.js";
 import OwnerManagerRoute from "./router/OwnerManagerRoute.js";
 import WorkerManagerRoute from "./router/WorkerManagerRoute.js";
 import ManagerProfileRoute from "./router/ManagerProfileRoute.js";
@@ -66,5 +67,7 @@ router.post("/ownermanager/", OwnerManagerRoute.createDoc);
 router.put("/ownermanager/:id", OwnerManagerRoute.updateDocById);
 
 router.put("/ownermanager/:id", OwnerManagerRoute.deleteDocById);
+
+router.put("/ownerlogin/", OwnerLogin.updateDoc);
 
 export default router;
