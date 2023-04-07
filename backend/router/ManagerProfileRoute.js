@@ -19,7 +19,7 @@ class ManagerProfileRoute {
   static getDocById = async (req, res) => {
     try {
       const result = await ManagerProfileModel.findOne({
-        email: req.body.email,
+        email: req.query.email,
       });
       res.send(result);
     } catch (err) {
@@ -30,7 +30,7 @@ class ManagerProfileRoute {
   static updateDocById = async (req, res) => {
     try {
       const result = await ManagerProfileModel.updateMany(
-        { email: req.param.id },
+        { email: req.query.email },
         { $set: req.body }
       );
       res.send(result);

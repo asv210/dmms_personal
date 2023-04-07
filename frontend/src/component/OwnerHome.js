@@ -5,6 +5,7 @@ import ManagerCard from "./ManagerCard";
 import axios from "axios";
 const OwnerHome = () => {
   const [dat, setData] = useState([]);
+
   const func = async () => {
     // e.preventDefault();
     const ema = localStorage.getItem("email");

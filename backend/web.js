@@ -43,7 +43,7 @@ router.get("/managerprofile1/", ManagerProfileRoute.getDocById);
 
 router.post("/managerprofile/", ManagerProfileRoute.createDoc);
 
-router.put("/managerprofile/:id", ManagerProfileRoute.updateDocById);
+router.put("/managerprofile/", ManagerProfileRoute.updateDocById);
 
 router.put("/managerprofile/:id", ManagerProfileRoute.deleteDocById);
 
