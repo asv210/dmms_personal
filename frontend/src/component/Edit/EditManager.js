@@ -21,7 +21,7 @@ const EditManager = () => {
   };
   const register = async (e) => {
     e.preventDefault();
-    if (user.password === user.reenterpassword) {
+    if (user.password == user.reenterpassword) {
       await axios
         .put(
           "http://localhost:8000/api/managerlogin11/?email=" + editEmail,

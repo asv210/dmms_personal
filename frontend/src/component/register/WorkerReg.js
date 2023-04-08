@@ -35,14 +35,14 @@ const WorkerReg = () => {
       await axios
         .post("http://localhost:8000/api/workerprofile/", profile)
         .then((res) => {
-          if (res.status == 201) {
+          if (res.status === 201) {
             console.log("confirm");
           }
         });
       await axios
         .post("http://localhost:8000/api/workerlogin/", user)
         .then((res) => {
-          if (res.status == 201) {
+          if (res.status === 201) {
             // console.log(res.data);
 
             alert("successfully added");

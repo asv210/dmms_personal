@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { NavLink } from "react-router-dom";
+
 import axios from "axios";
 import moment from "moment";
 
@@ -27,7 +27,7 @@ const WorkerDeskCard = ({ item }) => {
     await axios
       .put("http://localhost:8000/api/workerprofile/?email=" + user.email, user)
       .then((res) => {
-        if (res.status == 200) {
+        if (res.status === 200) {
           // console.log(res.data);
 
           alert("successfully added");
@@ -48,7 +48,7 @@ const WorkerDeskCard = ({ item }) => {
         // console.log(user);
       });
     await axios.get("http://localhost:8000/api/ownerlogin/").then((res) => {
-      if (res.status == 200) {
+      if (res.status === 200) {
         // console.log(res.data);
         setco(res.data[0].cod);
       } else {
