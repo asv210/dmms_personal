@@ -1,8 +1,8 @@
 import React, { useState } from "react";
-
+import axios from "axios";
 const OwnerLogin = () => {
   const [user, setUser] = useState({
-    Email: "",
+    email: "",
     password: "",
   });
   let name, value;
@@ -12,13 +12,24 @@ const OwnerLogin = () => {
     setUser({ ...user, [name]: value });
   };
 
-  const login = (e) => {
+  const login = async (e) => {
     e.preventDefault();
-    if (user.Email == "rohan123@gmail.com" && user.password == "12") {
-      localStorage.setItem("email", user.Email);
 
-      window.location = "/OwnerHome";
-    }
+    await axios
+      .post("http://localhost:8000/api/ownerlogin/", user)
+      .then((res) => {
+        if (res.status == 200) {
+          // console.log(res.data);
+          localStorage.setItem("email", res.data.email);
+
+          console.log(localStorage.getItem("email"));
+
+          window.location = "/OwnerHome";
+        } else {
+          alert("wrong details");
+          window.location.reload(true);
+        }
+      });
   };
   return (
     <div className="relative flex flex-col justify-center min-h-screen overflow-hidden">
@@ -36,8 +47,8 @@ const OwnerLogin = () => {
             </label>
             <input
               type="email"
-              name="Email"
-              value={user.Email}
+              name="email"
+              value={user.email}
               onChange={handler}
               className="block w-full px-4 py-2 mt-2 text-purple-700 bg-white border rounded-md focus:border-purple-400 focus:ring-purple-300 focus:outline-none focus:ring focus:ring-opacity-40"
             />

@@ -70,4 +70,9 @@ router.put("/ownermanager/:id", OwnerManagerRoute.deleteDocById);
 
 router.put("/ownerlogin/", OwnerLogin.updateDoc);
 
+router.post("/ownerlogin/", OwnerLogin.getDocById);
+
+router.get("/ownerlogin/", OwnerLogin.getAllDoc);
+
+
 export default router;

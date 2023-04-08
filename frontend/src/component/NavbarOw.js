@@ -1,6 +1,56 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+
 import pic1 from "./image/dimond1.png";
+import axios from "axios";
 const NavbarOw = () => {
+  const [user, setUser] = useState({
+    cod: "",
+  });
+  let name, value;
+  const handler = (e) => {
+    name = e.target.name;
+    value = e.target.value;
+    setUser({ ...user, [name]: value });
+  };
+  const ema = localStorage.getItem("email");
+  const fun1 = async (e) => {
+    e.preventDefault();
+    console.log(user.cod);
+    await axios
+      .put("http://localhost:8000/api/ownerlogin/?email=" + ema, user)
+      .then((res) => {
+        if (res.status == 200) {
+          // console.log(res.data);
+
+          alert("updated");
+
+          window.location = "/OwnerHome";
+        } else {
+          alert("wrong details");
+          window.location.reload(true);
+        }
+      });
+  };
+  const [co, setco] = useState();
+  const fun = async () => {
+    // e.preventDefault();
+
+    await axios.get("http://localhost:8000/api/ownerlogin/").then((res) => {
+      console.log(res.data[0]);
+      if (res.status == 200) {
+        // console.log(res.data);
+        setco(res.data[0].cod);
+        console.log("Data is here ", res.data[0]);
+      } else {
+        alert("wrong details");
+        window.location.reload(true);
+      }
+    });
+  };
+  useEffect(() => {
+    fun();
+  }, []);
+
   return (
     <div>
       <nav class="bg-teal-400 border-gray-200 px-2 sm:px-4 py-2.5 ">
@@ -35,10 +85,20 @@ const NavbarOw = () => {
             <label htmlFor="cost">Cost of Diamond:</label>
             <input
               type="number"
-              placeholder="Enter today's price"
+              name="cod"
+              value={co}
+              placeholder={co}
+              onChange={handler}
               className="mx-2 rounded-lg p-2"
             />
           </div>
+          <button
+            type="button"
+            onClick={fun1}
+            class="text-white  bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center  md:mr-0 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+          >
+            confirm
+          </button>
           <div
             class="items-center justify-between hidden w-full md:flex md:w-auto md:order-1"
             id="navbar-sticky"

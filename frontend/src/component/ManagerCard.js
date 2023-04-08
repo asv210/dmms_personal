@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import moment from "moment";
 const ManagerCard = ({ item }) => {
   const [user, setUser] = useState({
     email: item?.email,
@@ -14,6 +15,7 @@ const ManagerCard = ({ item }) => {
   const handler = (e) => {
     name = e.target.name;
     value = e.target.value;
+
     setUser({ ...user, [name]: value });
   };
 
@@ -59,8 +61,7 @@ const ManagerCard = ({ item }) => {
           <input
             type="date"
             name="date"
-            value={user.date}
-            placeholder={new Date(user.date).toLocaleDateString()}
+            value={moment(user.date).format("YYYY-MM-DD")}
             onChange={handler}
           />
         </div>
@@ -73,7 +74,6 @@ const ManagerCard = ({ item }) => {
             name="assignWork"
             value={user.assignWork}
             onChange={handler}
-            placeholder={user.assignWork}
           />
         </div>
 
@@ -81,7 +81,7 @@ const ManagerCard = ({ item }) => {
         <div className="text-center w-full py-4 ">{user.defectedWork}</div>
 
         <div className=" w-full text-center py-4 ">
-          <h3>{user.completed * 5}</h3>
+          <h3>{parseInt(user.completedWork) * 5}</h3>
         </div>
         <div className=" w-full text-center py-4">
           <button

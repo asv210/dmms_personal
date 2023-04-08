@@ -1,7 +1,6 @@
 import React from "react";
 import pic4 from "./image/worker.jpeg";
-import pic5 from "./image/EditButton.png";
-import pic6 from "./image/bin.png";
+
 import { NavLink } from "react-router-dom";
 const WorkerCard = ({ item }) => {
   return (
