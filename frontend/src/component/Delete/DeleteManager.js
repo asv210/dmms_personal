@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
-const ManagerReg = () => {
+const Del = () => {
   const [user, setUser] = useState({
     parent: localStorage.getItem("email"),
     email: "",
@@ -8,7 +8,7 @@ const ManagerReg = () => {
     name: "",
     phone: "",
     address: "",
-    reenterpassword: "",
+    reEnterpassword: "",
   });
   const [profile, setProfile] = useState({
     email: "",

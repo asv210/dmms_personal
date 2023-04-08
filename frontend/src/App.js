@@ -32,6 +32,7 @@ import ManagerInfo from "./component/ManagerInfo";
 import ManagerCard from "./component/ManagerCard";
 import HeaderMInfo from "./component/HeaderMInfo";
 import OwnerCard from "./component/OwnerCard";
+import EditManager from "./component/Edit/EditManager";
 function App() {
   // if (localStorage.getItem("email") === null) {
   //   console.log("iojei");
@@ -80,7 +81,11 @@ function App() {
             path="/HeaderMInfo"
             element={<HeaderMInfo></HeaderMInfo>}
           />
-
+          <Route
+            exact
+            path="/EditManager"
+            element={<EditManager></EditManager>}
+          />
           <Route exact path="/AddWorker" element={<AddWorker></AddWorker>} />
           <Route exact path="/AddManager" element={<AddManager></AddManager>} />
           <Route exact path="/WorkerInfo" element={<WorkerInfo></WorkerInfo>} />

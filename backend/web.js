@@ -6,6 +6,7 @@ import ManagerProfileRoute from "./router/ManagerProfileRoute.js";
 import ManagerLoginRoute from "./router/ManagerLoginRoute.js";
 import WorkerProfileRoute from "./router/WorkerProfileRoute.js";
 import WorkerLoginRoute from "./router/WorkerLoginRoute.js";
+import ManagerLoginModel from "./model/ManagerLogin.js";
 const router = express.Router();
 
 router.get("/workerlogin/", WorkerLoginRoute.getAllDoc);
@@ -22,11 +23,15 @@ router.get("/managerlogin/", ManagerLoginRoute.getAllDoc);
 
 router.post("/managerlogin1/", ManagerLoginRoute.getDocById);
 
+router.post("/getManagerInfo/", ManagerLoginRoute.getDoc);
+
 router.post("/managerlogin/", ManagerLoginRoute.createDoc);
 
-router.put("/managerlogin/:id", ManagerLoginRoute.updateDocById);
+router.put("/managerlogin/", ManagerLoginRoute.updateDocById);
 
-router.put("/managerlogin/:id", ManagerLoginRoute.deleteDocById);
+router.put("/managerlogin11/", ManagerLoginRoute.updateDoc);
+
+router.delete("/managerlogin/", ManagerLoginRoute.deleteDocById);
 
 router.get("/workerprofile/", WorkerProfileRoute.getAllDoc);
 
@@ -73,6 +78,5 @@ router.put("/ownerlogin/", OwnerLogin.updateDoc);
 router.post("/ownerlogin/", OwnerLogin.getDocById);
 
 router.get("/ownerlogin/", OwnerLogin.getAllDoc);
-
 
 export default router;

@@ -19,7 +19,7 @@ class WorkerManagerRoute {
   static getDocById = async (req, res) => {
     try {
       const result = await ManagerWorkerRelationModel.find({
-        email: req.body.id,
+        email: req.query.email,
       });
       res.send(result);
     } catch (err) {

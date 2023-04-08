@@ -1,7 +1,53 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { NavLink } from "react-router-dom";
+import axios from "axios";
 import pic4 from "./image/manager.jpeg.jpg";
 const OwnerCard = ({ item }) => {
+  const [user, setUser] = useState({
+    salary: item?.salary,
+  });
+  let name, value;
+  const handler = (e) => {
+    name = e.target.name;
+    value = e.target.value;
+
+    setUser({ ...user, [name]: value });
+  };
+
+  const confirmhandler = async (e) => {
+    e.preventDefault();
+
+    await axios
+      .put("http://localhost:8000/api/managerlogin/?email=" + item?.email, user)
+      .then((res) => {
+        if (res) {
+          // console.log(res.data);
+
+          alert("updated added");
+          window.location.reload(true);
+        } else {
+          alert("wrong details");
+          window.location.reload(true);
+        }
+      });
+  };
+  const func = async (e) => {
+    e.preventDefault();
+
+    await axios
+      .delete("http://localhost:8000/api/managerlogin/?email=" + item?.email)
+      .then((res) => {
+        if (res.status === 204) {
+          // console.log(res.data);
+
+          alert("successfully delete");
+          window.location.reload(true);
+        } else {
+          window.location.reload(true);
+        }
+      });
+  };
+
   return (
     <div>
       <div className="my-2">
@@ -23,11 +69,28 @@ const OwnerCard = ({ item }) => {
             {item?.address}
           </div>
           <div className="text-center w-full py-4">
-            <input type="number" className="w-[70%]" name="" id="" />
+            <input
+              type="number"
+              className="w-[70%]"
+              name="salary"
+              value={user.salary}
+              onChange={handler}
+            />
           </div>
-
+          <button
+            type="button"
+            onClick={confirmhandler}
+            class="text-white  bg-blue-700  hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-2 h-10 my-auto text-center  md:mr-0 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+          >
+            ok
+          </button>
           <div className=" w-full text-center py-4">
-            <NavLink to="/ManagerReg">
+            <NavLink
+              to="/EditManager"
+              onClick={() => {
+                localStorage.setItem("email1", item?.email);
+              }}
+            >
               {/* <img src={pic5} className="h-8 w-8 mx-auto" alt="" srcset="" /> */}
 
               <svg
@@ -41,7 +104,7 @@ const OwnerCard = ({ item }) => {
           </div>
 
           <div className=" w-full text-center py-4">
-            <NavLink>
+            <NavLink onClick={func}>
               {/* <img src={pic6} className="h-8 w-8 mx-auto" srcset="" />
                */}
               <svg

@@ -36,11 +36,9 @@ const NavbarOw = () => {
     // e.preventDefault();
 
     await axios.get("http://localhost:8000/api/ownerlogin/").then((res) => {
-      console.log(res.data[0]);
       if (res.status == 200) {
         // console.log(res.data);
         setco(res.data[0].cod);
-        console.log("Data is here ", res.data[0]);
       } else {
         alert("wrong details");
         window.location.reload(true);
@@ -53,7 +51,7 @@ const NavbarOw = () => {
 
   return (
     <div>
-      <nav class="bg-teal-400 border-gray-200 px-2 sm:px-4 py-2.5 ">
+      <nav class="bg-teal-400 border-gray-200 px-1 sm:px-4 py-2.5 ">
         <div class="container flex flex-wrap items-center justify-between mx-auto">
           <a href="#" class="flex items-center">
             <img src={pic1} class="h-6 mr-3 sm:h-9" alt="Flowbite Logo" />
@@ -81,7 +79,7 @@ const NavbarOw = () => {
               Log Out
             </button>
           </div>
-          <div>
+          <div className="">
             <label htmlFor="cost">Cost of Diamond:</label>
             <input
               type="number"
@@ -89,13 +87,13 @@ const NavbarOw = () => {
               value={co}
               placeholder={co}
               onChange={handler}
-              className="mx-2 rounded-lg p-2"
+              className="ml-2 rounded-lg w-32 p-2 "
             />
           </div>
           <button
             type="button"
             onClick={fun1}
-            class="text-white  bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center  md:mr-0 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+            class="text-white  bg-blue-700  hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center  md:mr-0 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
           >
             confirm
           </button>
