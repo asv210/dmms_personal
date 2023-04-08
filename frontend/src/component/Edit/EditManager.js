@@ -49,7 +49,6 @@ const EditManager = () => {
       .post("http://localhost:8000/api/getManagerInfo/?email=" + editEmail)
       .then((res) => {
         setUser(res.data);
-        
       });
   };
   useEffect(() => {
@@ -58,7 +57,7 @@ const EditManager = () => {
   return (
     <div className="flex flex-col items-center min-h-screen pt-6 sm:justify-center sm:pt-0 bg-gray-50">
       <div>
-        <h3 className="text-4xl font-bold text-purple-600">Add Manager</h3>
+        <h3 className="text-4xl font-bold text-purple-600">Edit Manager</h3>
       </div>
       <div className="w-full px-6 py-4 mt-6 overflow-hidden bg-white shadow-md sm:max-w-lg sm:rounded-lg">
         <form>

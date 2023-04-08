@@ -1,30 +1,21 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
-const Del = () => {
+const EditWorker = () => {
   const [user, setUser] = useState({
     parent: localStorage.getItem("email"),
-    email: "",
+    email: localStorage.getItem("email1"),
     password: "",
     name: "",
     phone: "",
     address: "",
-    reEnterpassword: "",
+    reenterpassword: "",
   });
-  const [profile, setProfile] = useState({
-    email: "",
-    date: "00",
-    assignWork: "00",
-    completedWork: "00",
-    defectedWork: "00",
-
-    salary: "00",
-  });
+  const [editEmail, EditEmail] = useState(localStorage.getItem("email1"));
   let name, value;
   const handler = (e) => {
     name = e.target.name;
     value = e.target.value;
     setUser({ ...user, [name]: value });
-    setProfile({ ...user, [name]: value });
 
     // console.log(localStorage.getItem("email"));
   };
@@ -32,21 +23,17 @@ const Del = () => {
     e.preventDefault();
     if (user.password === user.reenterpassword) {
       await axios
-        .post("http://localhost:8000/api/managerprofile/", profile)
+        .put(
+          "http://localhost:8000/api/workerlogin11/?email=" + editEmail,
+          user
+        )
         .then((res) => {
-          console.log(profile.email);
-          if (res.status == 201) {
-            console.log("confirm");
-          }
-        });
-      await axios
-        .post("http://localhost:8000/api/managerlogin/", user)
-        .then((res) => {
-          if (res.status == 201) {
+          if (res.status == 200) {
             // console.log(res.data);
 
             alert("successfully added");
-            window.location = "/AddManager";
+            localStorage.removeItem("email1");
+            window.location = "/ManagerHome";
           } else {
             alert("wrong details");
             window.location.reload(true);
@@ -54,13 +41,24 @@ const Del = () => {
         });
     } else {
       alert("wrong password");
-      window.location = "/AddWorker";
+      window.location.reload(true);
     }
   };
+  const fun = async (e) => {
+    await axios
+      .post("http://localhost:8000/api/getWorkerInfo/?email=" + editEmail)
+      .then((res) => {
+        setUser(res.data);
+        console.log(res.data);
+      });
+  };
+  useEffect(() => {
+    fun();
+  }, [editEmail]);
   return (
     <div className="flex flex-col items-center min-h-screen pt-6 sm:justify-center sm:pt-0 bg-gray-50">
       <div>
-        <h3 className="text-4xl font-bold text-purple-600">Add Manager</h3>
+        <h3 className="text-4xl font-bold text-purple-600">Edit Worker</h3>
       </div>
       <div className="w-full px-6 py-4 mt-6 overflow-hidden bg-white shadow-md sm:max-w-lg sm:rounded-lg">
         <form>
@@ -178,4 +176,4 @@ const Del = () => {
   );
 };
 
-export default ManagerReg;
+export default EditWorker;

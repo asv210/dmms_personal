@@ -15,9 +15,13 @@ router.post("/workerlogin1/", WorkerLoginRoute.getDocById);
 
 router.post("/workerlogin/", WorkerLoginRoute.createDoc);
 
+router.post("/getWorkerInfo/", WorkerLoginRoute.getDoc);
+
 router.put("/workerlogin/:id", WorkerLoginRoute.updateDocById);
 
-router.put("/workerlogin/:id", WorkerLoginRoute.deleteDocById);
+router.put("/workerlogin11/", WorkerLoginRoute.updateDoc);
+
+router.delete("/workerlogin/", WorkerLoginRoute.deleteDocById);
 
 router.get("/managerlogin/", ManagerLoginRoute.getAllDoc);
 

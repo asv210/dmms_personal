@@ -34,7 +34,12 @@ class WorkerLoginRoute {
       console.log(err);
     }
   };
+  static getDoc = async (req, res) => {
+    const email = req.query.email;
 
+    const data = await workerLoginModel.findOne({ email });
+    return res.status(200).send(data);
+  };
   static updateDocById = async (req, res) => {
     try {
       const result = await workerLoginModel.updateMany(
@@ -46,10 +51,26 @@ class WorkerLoginRoute {
       console(err);
     }
   };
-
+  static updateDoc = async (req, res) => {
+    try {
+      const updateuser = await workerLoginModel.findOne({
+        email: req.query.email,
+      });
+      if (updateuser.email === req.body.email) {
+        await updateuser.updateOne({ $set: req.body });
+        res.status(200).json("User Has Been Updated.");
+      } else {
+        res.status(403).json("You Can Not Update User");
+      }
+    } catch (err) {
+      res.status(500).json(err);
+    }
+  };
   static deleteDocById = async (req, res) => {
     try {
-      const result = await workerLoginModel.deleteMany({ email: req.param.id });
+      const result = await workerLoginModel.deleteMany({
+        email: req.query.email,
+      });
       res.status(204).send(result);
     } catch (err) {
       console(err);

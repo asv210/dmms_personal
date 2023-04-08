@@ -1,8 +1,24 @@
 import React from "react";
 import pic4 from "./image/worker.jpeg";
-
+import axios from "axios";
 import { NavLink } from "react-router-dom";
 const WorkerCard = ({ item }) => {
+  const func = async (e) => {
+    e.preventDefault();
+
+    await axios
+      .delete("http://localhost:8000/api/workerlogin/?email=" + item?.email)
+      .then((res) => {
+        if (res.status === 204) {
+          // console.log(res.data);
+
+          alert("successfully delete");
+          window.location.reload(true);
+        } else {
+          window.location.reload(true);
+        }
+      });
+  };
   return (
     <div className="my-2">
       <div className="flex flex-row space-between  bg-green-200">
@@ -19,7 +35,12 @@ const WorkerCard = ({ item }) => {
         </div>
 
         <div className=" w-full text-center py-4">
-          <NavLink to="#">
+          <NavLink
+            to="/EditWorker"
+            onClick={() => {
+              localStorage.setItem("email1", item?.email);
+            }}
+          >
             {/* <img src={pic5} className="h-8 w-8 mx-auto" alt="" srcset="" /> */}
 
             <svg
@@ -33,7 +54,7 @@ const WorkerCard = ({ item }) => {
         </div>
 
         <div className=" w-full text-center py-4">
-          <NavLink>
+          <NavLink onClick={func}>
             {/* <img src={pic6} className="h-8 w-8 mx-auto" srcset="" />
              */}
             <svg
