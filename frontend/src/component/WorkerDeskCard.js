@@ -1,33 +1,79 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { NavLink } from "react-router-dom";
-const WorkerDeskCard = () => {
+import axios from "axios";
+import moment from "moment";
+
+const WorkerDeskCard = ({ item }) => {
   const [user, setUser] = useState({
-    Date: "",
-    Assign: "",
-    Completed: "",
-    Defective: "",
-    DailySalary: "",
+    email: item?.email,
+    date: "",
+    assignWork: "",
+    completedWork: "",
+    defectedWork: "",
+
+    salary: "",
   });
   let name, value;
   const handler = (e) => {
     name = e.target.name;
     value = e.target.value;
+
     setUser({ ...user, [name]: value });
-    console.log(user.Date);
   };
 
-  const confirmhandler = (e) => {
+  const confirmhandler = async (e) => {
     e.preventDefault();
-    console.log(user);
+
+    await axios
+      .put("http://localhost:8000/api/workerprofile/?email=" + user.email, user)
+      .then((res) => {
+        if (res.status == 200) {
+          // console.log(res.data);
+
+          alert("successfully added");
+          window.location.reload(true);
+        } else {
+          alert("wrong details");
+          window.location.reload(true);
+        }
+      });
   };
+  const [co, setco] = useState();
+  const fun = async (e) => {
+    await axios
+      .get("http://localhost:8000/api/workerprofile1/?email=" + item?.email)
+      .then((res) => {
+        // console.log(res.data[0]);
+        setUser(res.data[0]);
+        // console.log(user);
+      });
+    await axios.get("http://localhost:8000/api/ownerlogin/").then((res) => {
+      if (res.status == 200) {
+        // console.log(res.data);
+        setco(res.data[0].cod);
+      } else {
+        alert("wrong details");
+        window.location.reload(true);
+      }
+    });
+  };
+  useEffect(() => {
+    fun();
+  }, []);
   return (
     <div className="flex flex-row space-between mt-2 bg-green-200">
       <div className=" w-2 mx-4 text-center py-4  ">1</div>
 
-      <div className="w-full  text-center py-4 ">Mahendralal Chiman oz</div>
+      <div className="w-full  text-center py-4 ">{item?.name}</div>
 
       <div className="text-center  w-full py-4">
-        <input type="date" name="Date" value={user.Date} onChange={handler} />
+        <input
+          type="date"
+          name="date"
+          // value={user.date}
+          value={moment(user.date).format("YYYY-MM-DD")}
+          onChange={handler}
+        />
       </div>
 
       <div className="text-center w-full py-4 ">
@@ -35,9 +81,8 @@ const WorkerDeskCard = () => {
           style={{ width: "50% " }}
           className=""
           type="number"
-          placeholder="00"
-          name="Assign"
-          value={user.Assign}
+          name="assignWork"
+          value={user.assignWork}
           onChange={handler}
         />
       </div>
@@ -47,9 +92,8 @@ const WorkerDeskCard = () => {
           style={{ width: "50% " }}
           className=""
           type="number"
-          name="Completed"
-          placeholder="00"
-          value={user.Completed}
+          name="completedWork"
+          value={user.completedWork}
           onChange={handler}
         />
       </div>
@@ -58,15 +102,14 @@ const WorkerDeskCard = () => {
           style={{ width: "50% " }}
           className=""
           type="number"
-          placeholder="00"
-          name="Defective"
-          value={user.Defective}
+          name="defectedWork"
+          value={user.defectedWork}
           onChange={handler}
         />
       </div>
 
       <div className="w-full text-center py-4 ">
-        <h3 className=" ">{user.DailySalary != "" ? user.DailySalary : "0"}</h3>
+        <h3 className=" ">{parseInt(user.completedWork) * co}</h3>
       </div>
       <div className=" w-full text-center py-4">
         <button

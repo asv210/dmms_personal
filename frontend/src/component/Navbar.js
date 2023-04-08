@@ -1,12 +1,53 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import pic1 from "./image/dimond1.png";
 import { NavLink } from "react-router-dom";
+import axios from "axios";
 const Navbar = (props) => {
-  const logouthandler = () => {
-    console.log(props.data);
-  };
   const name = localStorage.getItem("name");
-  console.log(name);
+  const emo = localStorage.getItem("email");
+  const [work, setwork] = useState({
+    completedWork: "",
+    defectedWork: "",
+  });
+  const [cod, setcod] = useState();
+  const fun = async (e) => {
+    await axios.get("http://localhost:8000/api/workerprofile/").then((res) => {
+      if (res.status == 200) {
+        let x = 0,
+          y = 0;
+        if (Object.keys(res.data).length > 0) {
+          res.data.map((i) => {
+            x += parseInt(i.completedWork);
+            y += parseInt(i.defectedWork);
+          });
+          setwork({
+            completedWork: x,
+            defectedWork: y,
+          });
+        }
+      } else {
+        console.log("something is not right");
+      }
+      // console.log(res.data[0]);
+      // setUser(res.data[0]);
+      // console.log(user);
+    });
+    await axios
+      .get("http://localhost:8000/api/managerprofile1/?email=" + emo)
+      .then((res) => {
+        if (res.status == 200) {
+          // console.log(res.data);
+          setcod(res.data.assignWork);
+        } else {
+          alert("wrong details");
+          window.location.reload(true);
+        }
+      });
+  };
+  useEffect(() => {
+    fun();
+  }, []);
+
   return (
     <div>
       <nav class="bg-teal-400 border-gray-200 px-2 sm:px-4 py-2.5 ">
@@ -38,8 +79,23 @@ const Navbar = (props) => {
             </button>
           </div>
           <div>
-            <h2 className="font-bold">{name}</h2>
+            <h2 className="font-bold">Name:</h2>
+            <h2 className="font-bold text-center">{name}</h2>
           </div>
+          <div>
+            <h2 className="font-bold">Assigned:</h2>
+            <h2 className="font-bold text-center">{cod}</h2>
+          </div>
+
+          <div>
+            <h2 className="font-bold">Completed:</h2>
+            <h2 className="font-bold text-center">{work.completedWork}</h2>
+          </div>
+          <div>
+            <h2 className="font-bold">Defactive:</h2>
+            <h2 className="font-bold text-center">{work.defectedWork}</h2>
+          </div>
+
           <div
             class="items-center justify-between hidden w-full md:flex md:w-auto md:order-1"
             id="navbar-sticky"

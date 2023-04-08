@@ -10,19 +10,35 @@ const WorkerReg = () => {
     email: "",
     reenterpassword: "",
   });
+  const [profile, setProfile] = useState({
+    email: "",
+    date: "00",
+    assignWork: "00",
+    completedWork: "00",
+    defectedWork: "00",
+
+    salary: "00",
+  });
   let name, value;
   const handler = (e) => {
     name = e.target.name;
     value = e.target.value;
     setUser({ ...user, [name]: value });
+    setProfile({ ...user, [name]: value });
+
     // console.log(user.reenterpassword);
   };
   const register = async (e) => {
     e.preventDefault();
 
     if (user.password === user.reenterpassword) {
-      console.log(user.password);
-      console.log(user.reenterpassword);
+      await axios
+        .post("http://localhost:8000/api/workerprofile/", profile)
+        .then((res) => {
+          if (res.status == 201) {
+            console.log("confirm");
+          }
+        });
       await axios
         .post("http://localhost:8000/api/workerlogin/", user)
         .then((res) => {

@@ -21,7 +21,7 @@ class ManagerProfileRoute {
       const result = await ManagerProfileModel.findOne({
         email: req.query.email,
       });
-      res.send(result);
+      res.status(200).send(result);
     } catch (err) {
       console.log(err);
     }

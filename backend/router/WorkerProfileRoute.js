@@ -9,7 +9,7 @@ class WorkerProfileRoute {
   static getAllDoc = async (req, res) => {
     try {
       const result = await WorkerProfileModel.find();
-      res.send(result);
+      res.status(200).send(result);
     } catch (err) {
       console.log(err);
     }
@@ -27,11 +27,11 @@ class WorkerProfileRoute {
   };
   static updateDocById = async (req, res) => {
     try {
-      const result = await workerProfileModel.updateMany(
-        { email: req.query.id },
+      const result = await WorkerProfileModel.updateMany(
+        { email: req.query.email },
         { $set: req.body }
       );
-      res.send(result);
+      res.status(200).send(result);
     } catch (err) {
       console(err);
     }
